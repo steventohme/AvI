@@ -15,7 +15,7 @@ const openai = new OpenAI({
 });
 
 const elevenLabsApiKey = process.env.ELEVEN_LABS_API_KEY;
-const voiceID = "sf7PeWZd8QTpnWJGNd9R";
+const voiceID = "BjyAFA5eHtPKEL1FJmUZ";
 
 const app = express();
 app.use(express.json());
@@ -29,27 +29,6 @@ app.get("/", (req, res) => {
 app.get("/voices", async (req, res) => {
   res.send(await voice.getVoices(elevenLabsApiKey));
 });
-
-
-app.post("/create-voice", async (req, res) => {
-  const form = new FormData();
-  form.append("name", req.body.name);
-  form.append("files", "[\n  \"./audios/api_0.mp3\"\n]");
-
-  const options = {'xi-api-key':process.env.ELEVEN_LABS_API_KEY, method: 'POST', headers: {'Content-Type': 'multipart/form-data'}};
-
-  options.body = form;
-
-  fetch('https://api.elevenlabs.io/v1/voices/add', options)
-    .then(response => response.json())
-    .then(response => console.log(response))
-    .catch(err => console.error(err));
-  
-  res.send({ status: 'success', message: 'Voice created successfully' });
-
-})
-
-
 
 
 app.post("/download-glb", async (req, res) => {
@@ -111,6 +90,8 @@ app.post("/chat", async (req, res) => {
   const USER_NAME = await readFile('./user_info/user_name.txt', 'utf8');
   const USER_PROMPT = await readFile('./user_info/user_prompt.txt', 'utf8');
 
+  console.log(USER_NAME, USER_PROMPT);
+
   const completion = await openai.chat.completions.create({
     model: "gpt-3.5-turbo-0125",
     max_tokens: 1000,
@@ -144,35 +125,32 @@ app.post("/chat", async (req, res) => {
   if (messages.messages) {
     messages = messages.messages; // ChatGPT is not 100% reliable, sometimes it directly returns an array and sometimes a JSON object with a messages property
   }
+
+  if (!messages.length) {
+    messages = [messages];
+  }
   for (let i = 0; i < messages.length; i++) {
     const message = messages[i];
-    // generate audio file
-    if (message.animation === "Dance"){
-      message.audio = await audioFileToBase64("audios/dance.mp3");
-      message.lipsync = "";
-    }
-    else{
-      const fileName = `audios/message_${i}.mp3`; // The name of your audio file
-      const textInput = message.text; // The text you wish to convert to speech
-      await voice.textToSpeech(elevenLabsApiKey, voiceID, fileName, textInput, 0.5, 0.75);
-      // generate lipsync
-      await lipSyncMessage(i);
-      message.audio = await audioFileToBase64(fileName);
-      message.lipsync = await readJsonTranscript(`audios/message_${i}.json`);
-    }
-    
+    const fileName = `audios/message_${i}.mp3`;
+    const textInput = message.text;
+    console.log("starting text to speech")
+    await voice.textToSpeech(elevenLabsApiKey, voiceID, fileName, textInput, 0.5, 0.75);
+    console.log("text to speech done")
+    await lipSyncMessage(i);
+    message.audio = await audioFileToBase64(fileName);
+    message.lipsync = await readJsonTranscript(`audios/message_${i}.json`);
   }
 
   res.send({ messages });
 });
 
 const readJsonTranscript = async (file) => {
-  const data = await fs.readFile(file, "utf8");
+  const data = await readFile(file, "utf8");
   return JSON.parse(data);
 };
 
 const audioFileToBase64 = async (file) => {
-  const data = await fs.readFile(file);
+  const data = await readFile(file);
   return data.toString("base64");
 };
 

@@ -15,6 +15,7 @@ export const ChatProvider = ({ children }) => {
       body: JSON.stringify({ message }),
     });
     const resp = (await data.json()).messages;
+    console.log(resp)
     setMessages((messages) => [...messages, ...resp]);
     setLoading(false);
   };
