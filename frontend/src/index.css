@@ -1,0 +1,24 @@
+@import url('https://rsms.me/inter/inter.css');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --leva-sizes-rootWidth: 340px;
+}
+
+#root {
+  width: 100vw;
+  height: 100vh;
+}
+
+body {
+  font-family: inter;
+  color: black;
+  background: #f0f0f0;
+}
+
+body.greenScreen {
+  background-color: #00ff00;
+  background-image: none;
+}

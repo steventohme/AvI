@@ -1,0 +1,51 @@
+{
+  "name": "frontend",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@react-three/drei": "9.75.0",
+    "@react-three/fiber": "8.13.3",
+    "@react-three/postprocessing": "^2.16.2",
+    "@readyplayerme/react-avatar-creator": "^0.5.0",
+    "@readyplayerme/visage": "^5.2.1",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^13.0.0",
+    "@testing-library/user-event": "^13.2.1",
+    "@types/three": "0.152.1",
+    "axios": "^1.6.8",
+    "fs": "^0.0.1-security",
+    "leva": "^0.9.35",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-dropzone": "^14.2.3",
+    "react-router-dom": "^6.23.1",
+    "react-scripts": "5.0.1",
+    "tailwindcss": "^3.4.3",
+    "three": "0.153.0",
+    "web-vitals": "^2.1.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
