@@ -2,6 +2,7 @@ import { AvatarCreator, AvatarCreatorConfig, AvatarExportedEvent } from '@readyp
 import { useNavigate } from "react-router-dom";
 
 
+
 const config: AvatarCreatorConfig = {
   clearCache: true,
   bodyType: 'fullbody',
@@ -13,10 +14,8 @@ const style = { width: '100%', height: '100vh', border: 'none' };
 
 export default function App() {
   const navigate = useNavigate();
+  navigate('/configuration');
   const handleOnAvatarExported = async (event: AvatarExportedEvent) => {
-    console.log('Avatar exported', event.data.url);
-    navigate('/configuration');
-
     const response = await fetch('http://localhost:3001/download-glb', {
       method: 'POST',
       headers: {
@@ -30,9 +29,12 @@ export default function App() {
     }
 
   };
+  
+ 
 
   return (
       <>
+      {/* avi-1tky8w.readyplayer.me?frameApi */}
         <AvatarCreator subdomain="demo" config={config} style={style} onAvatarExported={handleOnAvatarExported} />
       </>
   );

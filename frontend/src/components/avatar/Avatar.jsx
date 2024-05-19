@@ -244,5 +244,5 @@ export function Avatar(props) {
   )
 }
 
-useGLTF.preload(avatar_file);
+// useGLTF.preload(avatar_file);
 useGLTF.preload("/models/animations.glb");

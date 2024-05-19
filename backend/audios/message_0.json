@@ -1,14 +1,16 @@
 {
   "metadata": {
     "soundFile": "/Users/steventohme/Desktop/AvI/backend/audios/message_0.wav",
-    "duration": 0.65
+    "duration": 0.86
   },
   "mouthCues": [
     { "start": 0.00, "end": 0.04, "value": "X" },
-    { "start": 0.04, "end": 0.10, "value": "B" },
-    { "start": 0.10, "end": 0.15, "value": "C" },
-    { "start": 0.15, "end": 0.29, "value": "B" },
-    { "start": 0.29, "end": 0.57, "value": "E" },
-    { "start": 0.57, "end": 0.65, "value": "X" }
+    { "start": 0.04, "end": 0.09, "value": "B" },
+    { "start": 0.09, "end": 0.20, "value": "C" },
+    { "start": 0.20, "end": 0.27, "value": "B" },
+    { "start": 0.27, "end": 0.34, "value": "G" },
+    { "start": 0.34, "end": 0.62, "value": "C" },
+    { "start": 0.62, "end": 0.69, "value": "B" },
+    { "start": 0.69, "end": 0.86, "value": "X" }
   ]
 }

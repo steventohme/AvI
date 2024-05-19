@@ -12,6 +12,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<AvatarCreator />} />
         <Route path="/avatar" element={<CombinedAvatar/>} />
+        
         <Route path="/configuration" element={<Configuration/>} />
       </Routes>
     </BrowserRouter>

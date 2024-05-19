@@ -14,18 +14,20 @@ export default function Configuration() {
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          placeholder="Enter your name..."
+          placeholder="Enter name..."
           style={{ width: '100%' }}
+          className="w-full placeholder:text-gray-800 placeholder:italic p-4 rounded-md bg-opacity-50 bg-white backdrop-blur-md"
         />
       </div>
       <div style={{ marginTop: '20px' }}>
         <textarea
           value={description}
           onChange={(e) => setDescription(e.target.value)}
-          placeholder="Describe yourself here..."
+          placeholder="Describe personality..."
           rows="4"
           cols="50"
           style={{ width: '100%' }}
+          className="w-full placeholder:text-gray-800 placeholder:italic p-4 rounded-md bg-opacity-50 bg-white backdrop-blur-md"
         />
       </div>
       <div style={{ marginTop: '20px' }}>
@@ -42,13 +44,13 @@ export default function Configuration() {
               setTimeout(() => {
                 setIsLoading(false);
                 navigate("/avatar");
-              }, 45000);
+              }, 5000);
             })
             .catch(err => {
               setIsLoading(false);
               console.error(err);
             });
-        }}>
+        }} className="bg-pink-500 hover:bg-pink-600 text-white p-4 rounded-md">
           {isLoading ? 'Loading...' : 'Submit'}
         </button>
       </div>
